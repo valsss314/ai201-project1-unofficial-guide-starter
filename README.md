@@ -14,6 +14,8 @@
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
 
+Student reviews of CS professors at Georgia Institute of Technology - useful because official course descriptions don't reflect teaching style, exam difficulty, or workload. Student reviews are oftentimes more realistic and up to date as well.
+
 ---
 
 ## Document Sources
@@ -24,16 +26,16 @@
 
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2996586 |
+| 2 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2267953 |
+| 3 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/1347181 |
+| 4 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2352927 |
+| 5 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/1206421 |
+| 6 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2945001 |
+| 7 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2251818 |
+| 8 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/906485 |
+| 9 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2418017 |
+| 10 | Rate My Professor | Webpage Review | https://www.ratemyprofessors.com/professor/2150658 |
 
 ---
 
