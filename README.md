@@ -49,12 +49,16 @@ Student reviews of CS professors at Georgia Institute of Technology - useful bec
      - What your final chunk count was across all documents -->
 
 **Chunk size:**
+1 review long
 
 **Overlap:**
+0 characters
 
 **Why these choices fit your documents:**
+The rate my professor page is clearly structurally and semantically split by different students' reviews. Since each review only makes sense within its context, the chunks should be split based on each review's size rather than a fixed number. Having overlap wouldn't really mean anything here since each review is disjoint (from separate people).
 
 **Final chunk count:**
+604
 
 ---
 
