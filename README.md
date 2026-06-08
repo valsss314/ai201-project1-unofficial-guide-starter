@@ -71,8 +71,10 @@ The rate my professor page is clearly structurally and semantically split by dif
      latency, and local vs. API-hosted. -->
 
 **Model used:**
+all-MiniLM-L6-v2 via sentence-transformers
 
 **Production tradeoff reflection:**
+Larger models may be more accurate in the distance between different vector embeddings, but they require more time to store these embeddings and retrieve from them. Larger models also require more storage.
 
 ---
 
@@ -86,8 +88,16 @@ The rate my professor page is clearly structurally and semantically split by dif
      the mechanism. -->
 
 **System prompt grounding instruction:**
+You answer questions about Georgia Tech CS professors using ONLY the student reviews supplied in the context.
+
+Strict rules:
+- Use ONLY information found in the provided context documents. Never use outside knowledge, prior training, or assumptions.
+- If the context does not contain enough information to answer the question, reply with EXACTLY this sentence and nothing else: "{NO_INFO}"
+- Do not speculate, generalize beyond the reviews, or invent details (grades, courses, opinions) that are not in the context.
+- When you state something, it must be supported by the reviews provided.
 
 **How source attribution is surfaced in the response:**
+The context is provided with the document name, professor name, and course name.
 
 ---
 
@@ -99,11 +109,11 @@ The rate my professor page is clearly structurally and semantically split by dif
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Do students report that attendance is required for Professor David Joyner's courses? | No, attendance isn't required | Attendance might not be mandatory | Relevant | Partially accurate |
+| 2 | What is the typical course assignment structure of CS3451 taught by Bo Zhu? | 8 programming assignments and 2 quizzes | The typical course assignment structure of CS3451 taught by Bo Zhu includes eight projects, a final project, and two online, open-note tests. Additionally, the projects are in C++ and OpenGL, and all necessary formulas to finish the project can be found on the slides. | Relevant | Accurate |
+| 3 | What teaching qualities to students praise about Mark Moss? | Great lecturer, funny, cares about his students | Being a good lecturer, clear grading criteria, being caring and helpful, and making complex content manageable | Relevant | Accurate |
+| 4 | What are some concepts I should be prepared for before taking CS3630 with Sonia Chernova? | Robotics, probability and statistics, math | probability, statistic, and Python | Relevant | Accurate |
+| 5 | What are some criticisms about Will Perkins' lectures / teaching style? | Bad handwriting that's hard to decipher, trouble explaining concepts to students, not enough resources outside class | Poor handwriting, math/textbook heavy, boring lecture style, doesn't use slides | Relevant | Accurate |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
@@ -124,12 +134,16 @@ The rate my professor page is clearly structurally and semantically split by dif
      results from an unrelated review" is an explanation. -->
 
 **Question that failed:**
+What is the overall rating of David Joyner?
 
 **What the system returned:**
+The overall quality rating of David Joyner is 5.0/5, as all five documents have a quality rating of 5.0/5.
 
 **Root cause (tied to a specific pipeline stage):**
+The retrieval step caused this issue, since it only grabs the 5 most relevant documents from the database, so since all of them were 5/5, the agent seems to think that the overall rating is also 5/5.
 
 **What you would change to fix it:**
+For things that don't ask review-specific content and just a broader picture, I would have the agent either respond with "I don't know" or make it a separate case to consider all documents relevant to the professor.
 
 ---
 
@@ -139,8 +153,10 @@ The rate my professor page is clearly structurally and semantically split by dif
      Answer both questions with at least 2–3 sentences each. -->
 
 **One way the spec helped you during implementation:**
+I worked on this project over several days, so I was able to quickly look at the spec and recall what I had / hadn't done yet instead of scanning through the codebase every time I worked on this.
 
 **One way your implementation diverged from the spec, and why:**
+My implementation didn't diverge frmo the spec.
 
 ---
 
@@ -157,12 +173,12 @@ The rate my professor page is clearly structurally and semantically split by dif
 
 **Instance 1**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave Claude my raw files from the rate my professor website and a prompt to preprocess it to include clear distinctions for each review and get rid of anything else that isn't relevant to the review.
+- *What it produced:* The AI modified my raw text files to be as I intended.
+- *What I changed or overrode:* I overrode this and told the AI to create a copy of my original text files in a separate folder and modify it there so that if I wanted to actually include something, I could still access it.
 
 **Instance 2**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave Claude a prompt to construct a query file that includes functions for returning responses to user queries with Groq.
+- *What it produced:* Claude produced code for exactly what I asked it to produce.
+- *What I changed or overrode:* I added to the system prompt and told it to support its answer with the reviews from the database.
